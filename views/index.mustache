@@ -1,0 +1,55 @@
+<html>
+
+<head>
+    <title>Kev's server movie site</title>
+    <link rel="stylesheet" type="text/css" href="/moviesite/site.css" />
+</head>
+
+<body>
+    <h1>Movies!</h1>
+    <form action="/add-movie" method="POST">
+        <input type="text" name="movie_name" placeholder="Enter Movie Name">
+        <input type="text" name="description" placeholder="Enter Description">
+        <select id='genres' name="genre">
+            <option value="" selected disabled hidden>Select Genre</option>
+            <option value="Action">Action</option>
+            <option value="Drama">Drama</option>
+            <option value="Horror">Horror</option>
+            <option value="Comedy">Comedy</option>
+            <option value="Romance">Romance</option>
+            <option value="Sci-Fi">Sci-Fi</option>
+        </select>
+        <input type="text" name="url" placeholder="Enter Image URL">
+        <input type="submit">
+
+    </form>
+    <h1>Filter by Genre</h1>
+        <form action="/filter" method="POST">
+        <select id='genres' name="selectedGenre">
+            <option value="" selected disabled hidden>Select Genre</option>
+            <option value="Action">Action</option>
+            <option value="Drama">Drama</option>
+            <option value="Horror">Horror</option>
+            <option value="Comedy">Comedy</option>
+            <option value="Romance">Romance</option>
+            <option value="Sci-Fi">Sci-Fi</option>
+        </select>
+        <input type="submit" value="Filter">
+        </form>
+
+    {{#movieList}}
+    <ul>
+        <form action="/delete-movie" method="POST">
+            <li>
+                <h3>{{title}}</h3>
+                <p>{{description}} - {{genre}}</p>
+                <img src="{{url}}"  style="width:200px;height:300px">
+                <input type="hidden" name=movieName value="{{title}}">
+                <input type="submit" value="Remove">
+            </li>
+        </form>
+    </ul>
+    {{/movieList}}
+</body>
+
+</html>
